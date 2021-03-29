@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Login Success</title>
+    <style type="text/css">
+    span {
+        display: inline-block;
+        width: 200px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+<div align="left">
+    <h2>Login Succeeded!</h2>
+    <div class="my-3">
+        <p><strong>Name:</strong> <span th:text="${response.user}"></span></p>
+        <p><strong>Token:</strong> <span th:text="${response.jwttoken}"></span></p>
+    </div>
+</div>
+</body>
+</html>

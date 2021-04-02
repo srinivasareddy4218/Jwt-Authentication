@@ -35,6 +35,11 @@ public class UserController {
 		return "login";
 	}
 
+	@GetMapping("/")
+	public ModelAndView frontend(){
+		return new ModelAndView("index.html");
+	}
+
 	@PostMapping("/done")
 	public ModelAndView createAuthenticationToken(@ModelAttribute("jwtRequest") JwtRequest jwtRequest) throws Exception {
 

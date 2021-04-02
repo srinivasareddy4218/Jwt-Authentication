@@ -47,11 +47,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf().disable()
-				.authorizeRequests().antMatchers("/call-app-one", "/done", "/login", "/register").permitAll().
-						anyRequest().authenticated().and().
-						exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		httpSecurity
+				.csrf()
+					.disable()
+				.authorizeRequests()
+					.antMatchers("/",
+					"/favicon.ico",
+					"/**/*.png",
+					"/**/*.gif",
+					"/**/*.svg",
+					"/**/*.jpg",
+					"/**/*.html",
+					"/**/*.css",
+					"/**/*.js")
+					.permitAll()
+				.anyRequest()
+					.authenticated()
+				.and()
+				.exceptionHandling()
+					.authenticationEntryPoint(jwtAuthenticationEntryPoint)
+				.and()
+				.sessionManagement()
+					.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 }

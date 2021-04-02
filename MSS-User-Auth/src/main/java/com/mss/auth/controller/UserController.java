@@ -51,9 +51,14 @@ public class UserController {
 		return view;
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@PostMapping("/register")
 	public ResponseEntity<?> saveUser(@RequestBody User user) throws Exception {
 		return ResponseEntity.ok(userDetailsService.save(user));
+	}
+
+	@GetMapping("/validateUser")
+	public UserDetails validateUser(@PathVariable String username){
+		return userDetailsService.loadUserByUsername(username);
 	}
 
 	private void authenticate(String username, String password) throws Exception {

@@ -24,6 +24,5 @@ public class UserEntity {
     private String role;
 
     @Column(name="password")
-    @JsonIgnore
     private String password;
 }

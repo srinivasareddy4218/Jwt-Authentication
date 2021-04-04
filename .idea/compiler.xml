@@ -8,20 +8,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MSS-User-Auth" />
-        <module name="App-One" />
+        <module name="App-2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="App-2" target="1.8" />
       <module name="App-One" target="1.8" />
       <module name="MSS-User-Auth" target="1.8" />
       <module name="MSS-User-Auth (1)" target="1.8" />
+      <module name="MSS-User-Auth2" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="App-2" options="-parameters" />
       <module name="App-One" options="-parameters" />
       <module name="MSS-User-Auth" options="-parameters" />
       <module name="MSS-User-Auth (1)" options="-parameters" />
+      <module name="MSS-User-Auth2" options="-parameters" />
     </option>
   </component>
 </project>

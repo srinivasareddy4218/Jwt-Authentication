@@ -1,5 +1,7 @@
 # Jwt-Authentication
 
-MSS-User-Auth -> JWT token generation
+MSS-User-Auth -> 8090
 
-App-One -> JWT Validation
+App-2 -> 8091
+
+FrontEnd -> 8092

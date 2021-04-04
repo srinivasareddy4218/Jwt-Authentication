@@ -10,6 +10,7 @@ import Register from "./components/register.component";
 import Home from "./components/home.component";
 import Profile from "./components/profile.component";
 import AppTwo from "./components/apptwo.component";
+import App2Public from "./components/app2public.component";
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class App extends Component {
             MSS-User-Auth
           </Link>
           <div className="navbar-nav mr-auto">
+            
           {currentUser && (
             <li className="nav-item">
               <Link to={"/app2-hello"} className="nav-link">
@@ -72,6 +74,11 @@ class App extends Component {
           ) : (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
+              <Link to={"/app2public"} className="nav-link">
+                App-Two
+              </Link>
+            </li>
+              <li className="nav-item">
                 <Link to={"/login"} className="nav-link">
                   Login
                 </Link>
@@ -89,6 +96,7 @@ class App extends Component {
         <div className="container mt-3">
           <Switch>
             <Route exact path={"/app2-hello"} component={AppTwo} />
+            <Route exact path={"/app2public"} component={App2Public} />
             <Route exact path={"/"} component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />

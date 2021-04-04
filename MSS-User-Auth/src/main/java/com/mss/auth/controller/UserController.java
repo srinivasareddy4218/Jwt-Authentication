@@ -5,6 +5,8 @@ import com.mss.auth.jwt.JwtRequest;
 import com.mss.auth.jwt.JwtResponse;
 import com.mss.auth.jwt.JwtUserDetailsService;
 import com.mss.auth.user.User;
+import com.mss.auth.user.UserEntity;
+import com.mss.auth.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,7 +19,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@RestController
+@CrossOrigin
 public class UserController {
 
 	@Autowired
@@ -29,11 +32,8 @@ public class UserController {
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
 
-	@GetMapping("/done")
-	public String add(Model model) {
-		model.addAttribute("jwtRequest", new JwtRequest());
-		return "login";
-	}
+	@Autowired
+	private UserRepository userRepository;
 
 	@GetMapping("/")
 	public ModelAndView frontend(){
@@ -41,7 +41,7 @@ public class UserController {
 	}
 
 	@PostMapping("/done")
-	public ModelAndView createAuthenticationToken(@ModelAttribute("jwtRequest") JwtRequest jwtRequest) throws Exception {
+	public JwtResponse createAuthenticationToken(@RequestBody JwtRequest jwtRequest) throws Exception {
 
 		authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
 
@@ -50,10 +50,8 @@ public class UserController {
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
 		JwtResponse response = new JwtResponse(userDetails.getUsername(), token);
-		ModelAndView view = new ModelAndView("register_success");
-		view.addObject("response", response);
 
-		return view;
+		return response;
 	}
 
 	@PostMapping("/register")
@@ -61,9 +59,9 @@ public class UserController {
 		return ResponseEntity.ok(userDetailsService.save(user));
 	}
 
-	@GetMapping("/validateUser")
-	public UserDetails validateUser(@PathVariable String username){
-		return userDetailsService.loadUserByUsername(username);
+	@GetMapping("/validateUser/{username}")
+	public UserEntity validateUser(@PathVariable String username){
+		return userRepository.findByName(username);
 	}
 
 	private void authenticate(String username, String password) throws Exception {

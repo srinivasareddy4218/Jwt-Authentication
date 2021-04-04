@@ -1,4 +1,4 @@
-package com.mss.auth.config;
+package com.app.two.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -48,21 +48,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
+				.cors().and()
 				.csrf()
 					.disable()
 				.authorizeRequests()
-					.antMatchers("/","/done","/register","/login","/profile","/validateUser/*",
-					"/static/**",
-					"/**/*.ico",
-					"/**/*.png",
-					"/**/*.gif",
-					"/**/*.json",
-					"/**/*.svg",
-					"/**/*.jpg",
-					"/**/*.html",
-					"/**/*.css",
-					"/**/*.js")
-					.permitAll()
 				.anyRequest()
 					.authenticated()
 				.and()

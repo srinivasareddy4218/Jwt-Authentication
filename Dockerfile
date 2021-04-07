@@ -29,7 +29,7 @@ FROM maven:3.6.1-jdk-8-slim AS build
 RUN mkdir -p /workspace
 WORKDIR /workspace
 COPY MSS-User-Auth/pom.xml /workspace
-COPY src /workspace/src
+COPY MSS-User-Auth/src /workspace/src
 RUN mvn -f pom.xml clean package
 
 FROM openjdk:8-alpine

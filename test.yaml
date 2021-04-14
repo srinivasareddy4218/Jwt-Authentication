@@ -18,8 +18,7 @@ spec:
       containers:
         - name: devops
           image: frontendtestjava.azurecr.io/srinivasareddy4218/jwt-authentication:20
-           imagePullPolicy: Always
-          ports:
+        ports:
             - containerPort: 8092
 
 ---
